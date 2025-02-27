@@ -20,3 +20,20 @@ export async function ticketing(id) {
         throw error;
     }
 }
+
+export async function getReservations() {
+    try {
+        const response = await axios.get(
+            API_URL,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                }
+            });
+        return response.data;
+    } catch (error) {
+        console.error(error.response?.data?.message);
+        throw error;
+    }
+}

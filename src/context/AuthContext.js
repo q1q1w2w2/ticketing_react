@@ -4,15 +4,18 @@ import {loginService} from "services/authService";
 export const AuthContext = createContext();
 
 export function AuthProvider({children}) {
-    const [user, setUser] = useState(undefined);
+    const [isAuthenticated, setIsAuthenticated] = useState(undefined);
     const [isLoading, setIsLoading] = useState(true);
+    const [userEmail, setUserEmail] = useState(null);
 
     useEffect(() => {
         const token = localStorage.getItem("accessToken");
+        const storedEmail = localStorage.getItem("userEmail");
         if (token) {
-            setUser({isAuthenticated: true});
+            setIsAuthenticated({isAuthenticated: true});
+            setUserEmail(storedEmail);
         } else {
-            setUser(null);
+            setIsAuthenticated(null);
         }
         setIsLoading(false);
     }, []);
@@ -23,7 +26,9 @@ export function AuthProvider({children}) {
             if (response.status === "OK") {
                 localStorage.setItem("accessToken", response.data.accessToken);
                 localStorage.setItem("refreshToken", response.data.refreshToken);
-                setUser({isAuthenticated: true});
+                localStorage.setItem("userEmail", email);
+                setIsAuthenticated({isAuthenticated: true});
+                setUserEmail(email);
             }
         } catch (error) {
             console.error(error);
@@ -34,11 +39,13 @@ export function AuthProvider({children}) {
     const logout = () => {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
-        setUser(null);
+        localStorage.removeItem("userEmail");
+        setIsAuthenticated(null);
+        setUserEmail(null);
     }
 
     return (
-        <AuthContext.Provider value={{user, login, logout, isLoading}}>
+        <AuthContext.Provider value={{user: isAuthenticated, login, logout, isLoading, userEmail}}>
             {children}
         </AuthContext.Provider>
     )

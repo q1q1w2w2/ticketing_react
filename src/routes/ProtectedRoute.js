@@ -6,16 +6,11 @@ export default function ProtectedRoute() {
     const { user, isLoading } = useContext(AuthContext);
     const location = useLocation();
 
-    if (isLoading) {
+    if (user === undefined || isLoading) {
         return <div>Loading...</div>;
     }
 
-    if (user === undefined) {
-        return null;
-    }
-
     if (!user) {
-        // state => 원래 있던 페이지 기억
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
 

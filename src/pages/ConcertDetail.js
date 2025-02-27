@@ -57,7 +57,7 @@ export default function ConcertDetail() {
                 <p><strong>📍 장소:</strong> {concert.locationName}</p>
                 <p><strong>📅 날짜:</strong> {formatDate(concert.concertAt)}</p>
                 <p><strong>🎟️ 총 좌석:</strong> {concert.seats.toLocaleString()}석</p>
-                <p><strong>🛑 잔여 좌석:</strong> {concert.reservedAmount.toLocaleString()}석</p>
+                <p><strong>🛑 잔여 좌석:</strong> {(concert.seats - concert.reservedAmount).toLocaleString()}석</p>
                 <p><strong>🕒 예매 시작:</strong> {formatDate(concert.openAt)}</p>
                 <p><strong>⏳ 예매 마감:</strong> {formatDate(concert.closeAt)}</p>
                 <p><strong>📢 상태:</strong> {getConcertStatus(concert.status)}</p>

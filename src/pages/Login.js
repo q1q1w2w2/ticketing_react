@@ -20,6 +20,10 @@ export default function Login() {
         }
     };
 
+    const handleSignup = () => {
+        navigate("/signup");
+    }
+
     return (
         <div className="login-container">
             <h2>로그인 페이지</h2>
@@ -39,6 +43,7 @@ export default function Login() {
                 />
                 <button type="submit">로그인</button>
             </form>
+            <button onClick={handleSignup}>회원가입</button>
         </div>
     );
 }

@@ -33,7 +33,7 @@ export default function Concert() {
                                 <h3>{concert.title}</h3>
                                 <p>장소: {concert.locationName}</p>
                                 <p>날짜: {concert.concertAt}</p>
-                                <p>잔여 좌석: {concert.reservedAmount}</p>
+                                <p>잔여 좌석: {concert.seats - concert.reservedAmount}</p>
                                 <p>상태: {getConcertStatus(concert.status)}</p>
                             </li>
                         </Link>
