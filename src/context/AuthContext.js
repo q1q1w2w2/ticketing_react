@@ -42,6 +42,7 @@ export function AuthProvider({children}) {
         localStorage.removeItem("userEmail");
         setIsAuthenticated(null);
         setUserEmail(null);
+
     }
 
     return (

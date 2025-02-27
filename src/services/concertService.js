@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const API_URL = "http://localhost:8084/api/concert";
-const token = localStorage.getItem("accessToken");
 
 export async function getConcerts() {
+    const token = localStorage.getItem("accessToken");
     try {
         const response = await axios.get(API_URL, {
             headers: {
@@ -18,6 +18,7 @@ export async function getConcerts() {
 }
 
 export async function getConcert(id) {
+    const token = localStorage.getItem("accessToken");
     try {
         const response = await axios.get(`${API_URL}/${id}`, {
             headers: {

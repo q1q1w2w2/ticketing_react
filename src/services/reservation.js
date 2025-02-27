@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const API_URL = "http://localhost:8084/api/reservation";
-const token = localStorage.getItem("accessToken");
 
 export async function ticketing(id) {
+    const token = localStorage.getItem("accessToken");
     try {
         const response = await axios.post(
             API_URL,
@@ -22,6 +22,7 @@ export async function ticketing(id) {
 }
 
 export async function getReservations() {
+    const token = localStorage.getItem("accessToken");
     try {
         const response = await axios.get(
             API_URL,
